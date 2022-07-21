@@ -9,10 +9,8 @@ const UserPage = () => {
   const {userId} = useParams()
   const user = useSelector(state => selectUserById(state, +userId))
   
-  const postsForUser = useSelector( state => {
-    const allPosts = selectAllPosts(state)
-    return allPosts.filter( post => post.userId === +userId )
-  })
+  //optimized data in store
+  const postsForUser = useSelector( state => selectPostsByUser(state, +userId) )
 
   const postTitles = postsForUser.map( post => (
     <li key={post.id}>
